@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-mon-premier',
@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class MonPremierComponent implements OnInit {
 
 
-  prenom:string = 'David';
-
+  //prenom:string = 'David';
+  @Input() prenom:string;
   constructor() { }
 
   ngOnInit() {
