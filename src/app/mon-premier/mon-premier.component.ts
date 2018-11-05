@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MonPremierComponent implements OnInit {
 
+
+  prenom:string = 'David';
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  afficherPrenom() {
+    console.log(this.prenom);
   }
 
 }
