@@ -7,9 +7,20 @@ import { Component, Input,OnInit } from '@angular/core';
 })
 export class ListAppareilsItemComponent implements OnInit {
 @Input() appareilName:string;
+@Input() appareilStatus:string;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getStatus(){
+    if (this.appareilStatus == 'Allumé') {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
 
 }
