@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import  { AppareilsService} from '../services/Appareils.service';
 
+
 @Component({
   selector: 'app-list-appareils',
   templateUrl: './list-appareils.component.html',
@@ -27,7 +28,10 @@ export class ListAppareilsComponent implements OnInit {
     
     }
   ];*/
+  
   appareils: any[];
+
+  loading=true;
   constructor(private appareilsService: AppareilsService) {
 
     /*setTimeout(
@@ -38,7 +42,7 @@ export class ListAppareilsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.appareils = this.appareilsService.appareils;
+   this.onRecuperer();
   }
 
   onAllumer(){
@@ -54,7 +58,18 @@ export class ListAppareilsComponent implements OnInit {
   }
 
   onRecuperer(){
-    this.appareilsService.getAppareils();
+    this.appareilsService.getAppareils().subscribe(
+      (response) => {
+        this.appareilsService.appareils = response;
+        this.appareils = this.appareilsService.appareils;
+        this.loading=false;
+        console.log(response);
+      },
+      (error) => {
+        console.log('Erreur : ' + error);
+      }
+    );
+
   }
  
 

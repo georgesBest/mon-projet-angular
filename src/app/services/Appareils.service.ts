@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import {AppareilModel} from '../models/appareil.model';
 
 @Injectable()
 export class AppareilsService {
@@ -9,7 +10,7 @@ export class AppareilsService {
 
     }
 
-    appareils = [
+    /*appareils = [
         {
           'name' : 'Machine à laver',
           'status' : 'Allumé',
@@ -25,8 +26,9 @@ export class AppareilsService {
           'status' : 'Eteint',
         
         }
-      ];
-
+    ];*/
+      //appareils: any[];
+      appareils: AppareilModel[];
       switchOnAll(){
         for (let appareil of this.appareils){
           appareil.status = 'Allumé';
@@ -53,7 +55,7 @@ export class AppareilsService {
       addAppareil(name,status){
         const newAppareil = {'name' : name,'status':status};
         this.appareils.push(newAppareil);
-        const postDb = this.httpClient.post('https://ma-domotique-angular-b782c.firebaseio.com/appareils.json',newAppareil);
+        const postDb = this.httpClient.put('https://ma-domotique-angular-b782c.firebaseio.com/appareils.json',this.appareils);
         const maSub = postDb.subscribe (
           (value) => {
             console.log(value);
@@ -68,8 +70,25 @@ export class AppareilsService {
       }
 
       saveAppareil(){
+        const appareils1 = [
+          {
+            'name' : 'Machine à laver',
+            'status' : 'Allumé',
+          
+          },
+          {
+            'name' : 'Lave vaisselle',
+            'status' : 'Allumé',
+          
+          },
+          {
+            'name' : 'Télévision',
+            'status' : 'Eteint',
+          
+          }
+        ];
         //post est un observable
-        const postDb = this.httpClient.put('https://ma-domotique-angular-b782c.firebaseio.com/appareils.json',this.appareils);
+        const postDb = this.httpClient.put('https://ma-domotique-angular-b782c.firebaseio.com/appareils.json',appareils1);
         const maSub = postDb.subscribe (
           (value) => {
             console.log(value);
@@ -84,16 +103,7 @@ export class AppareilsService {
         }
 
         getAppareils(){
-          const getDb = this.httpClient.get<any[]>('https://ma-domotique-angular-b782c.firebaseio.com/appareils.json');
-          getDb.subscribe(
-            (response) => {
-              this.appareils = response;
-              console.log(response);
-            },
-            (error) => {
-              console.log('Erreur : ' + error);
-            }
-          );
+          return  this.httpClient.get<any[]>('https://ma-domotique-angular-b782c.firebaseio.com/appareils.json');
         }
 
         //console.log(maSub);
