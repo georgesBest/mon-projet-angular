@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MonPremierComponent } from './mon-premier/mon-premier.component';
+
 import { ListAppareilsComponent } from './list-appareils/list-appareils.component';
 import { ListAppareilsItemComponent } from './list-appareils-item/list-appareils-item.component';
 
@@ -19,7 +19,6 @@ import { AddAppareilComponent } from './add-appareil/add-appareil.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MonPremierComponent,
     ListAppareilsComponent,
     ListAppareilsItemComponent,
     AuthComponent,
