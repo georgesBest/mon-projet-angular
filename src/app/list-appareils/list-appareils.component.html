@@ -6,8 +6,12 @@
           <!--<app-list-appareils-item [appareilName]="appareilName1"></app-list-appareils-item>
           <app-list-appareils-item [appareilName]="appareilName2"></app-list-appareils-item>
           <app-list-appareils-item [appareilName]="appareilName3"></app-list-appareils-item>-->
-          <app-list-appareils-item [appareilName]="appareil.name" [appareilStatus] ="appareil.status" *ngFor="let appareil of appareils"></app-list-appareils-item>
+          <app-list-appareils-item [appareilName]="appareil.name" [appareilStatus] ="appareil.status" [index]="i" *ngFor="let appareil of appareils; let i = index"></app-list-appareils-item>
         </ul>
+        <button class="btn btn-success" (click)="onAllumer()">Tout allumer</button>
+        <button class="btn btn-danger" (click)="onEteindre()">Tout Eteindre</button>
+        <button class="btn btn-primary" (click)="onSauvegarder()">Tout Sauvegarder</button>
+        <button class="btn btn-primary" (click)="onRecuperer()">Tout Recuperer</button>
     </div>
   </div>
 </div>

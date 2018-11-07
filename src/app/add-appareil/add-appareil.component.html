@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="name">Nom : </label>
+        <input type="text" id="name" name="name" class="form-control" required ngModel>
+      </div>
+      <div class="form-group">
+        <label for="status">Statut : </label>
+        <select id="status" name="status" class="form-control" required [ngModel]="defaultStatus">
+          <option value="Allumé">Allumé</option>
+          <option value="Eteint">Eteint</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Enregistrer</button>
+    </form>
+  </div>
+</div>
